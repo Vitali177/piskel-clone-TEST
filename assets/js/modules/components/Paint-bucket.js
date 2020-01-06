@@ -21,6 +21,12 @@ export const PaintBucket = {
 
     while (arr.length !== 0) {
       coords = arr.pop();
+
+      if (coords[0] < 0 || coords[1] < 0 || coords[0] >= Canvas.canvas.width || coords[1] >= Canvas.canvas.height) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
       ctx.fillRect(coords[0], coords[1], sizeOneBlock, sizeOneBlock);
 
       if (ctx.getImageData(coords[0] + sizeOneBlock, coords[1], 1, 1).data.toString() === oldColor) {
