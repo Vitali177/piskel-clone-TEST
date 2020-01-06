@@ -109,7 +109,8 @@ header {
   align-items: center;
   width: 125px;
   background-color: #333333;
-  padding-top: 20px; }
+  padding-top: 20px;
+  overflow: auto; }
   .frames .frame {
     display: flex;
     flex-direction: column;
