@@ -15,7 +15,6 @@ export const Preview = {
       const ctx = previewFrame.getContext('2d');
       ctx.imageSmoothingEnabled = false;
 
-
       const dataURL = that.framesSrc[indexFrame];
       const img = new Image();
       img.src = dataURL;
@@ -23,7 +22,7 @@ export const Preview = {
       img.onload = () => {
         ctx.clearRect(0, 0, previewFrame.width, previewFrame.height);
         ctx.drawImage(img, 0, 0, previewFrame.width, previewFrame.height);
-      } 
+      };
 
       // eslint-disable-next-line no-unused-expressions
       indexFrame + 1 >= that.framesSrc.length ? indexFrame = 0 : indexFrame += 1;
