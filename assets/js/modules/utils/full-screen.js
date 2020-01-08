@@ -1,5 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-import { Preview } from '../components/Preview';
 
 export function fullScreen(element) {
   if ('fullscreenEnabled' in document || 'webkitFullscreenEnabled' in document || 'mozFullScreenEnabled' in document

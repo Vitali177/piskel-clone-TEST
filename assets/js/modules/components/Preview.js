@@ -23,13 +23,14 @@ export const Preview = {
         ctx.clearRect(0, 0, previewFrame.width, previewFrame.height);
         ctx.drawImage(img, 0, 0, previewFrame.width, previewFrame.height);
       };
-
       // eslint-disable-next-line no-unused-expressions
       indexFrame + 1 >= that.framesSrc.length ? indexFrame = 0 : indexFrame += 1;
     }
 
     this.timer = setInterval(() => {
-      showFrame();
+      if (Preview.framesSrc.length !== 0) { // если кадры есть
+        showFrame();
+      }
     }, this.interval);
   },
 

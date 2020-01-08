@@ -4,7 +4,6 @@ import { Frames } from '../components/Frames';
 import { Preview } from '../components/Preview';
 
 export function deleteFrame(buttonDeleteFrame, frame, selected) {
-  console.log('delete');
   if (document.querySelectorAll('.frame').length === 1) {
     return;
   }
@@ -35,7 +34,8 @@ export function deleteFrame(buttonDeleteFrame, frame, selected) {
   if (number === Preview.framesSrc.length) { // Если фрейм последний
     Preview.framesSrc = [...Preview.framesSrc.slice(0, number - 1)];
   } else {
-    Preview.framesSrc = [...Preview.framesSrc.slice(0, number - 1), ...Preview.framesSrc.slice(number)];
+    const start = [...Preview.framesSrc.slice(0, number - 1)];
+    Preview.framesSrc = [...start, ...Preview.framesSrc.slice(number)];
   }
 
   if (number - 1 >= 1) {

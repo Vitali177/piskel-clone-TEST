@@ -7,8 +7,8 @@ import { getHexColor } from '../utils/get-HEX-color';
 
 export const PaintBucket = {
   fillArea(e) {
-    const { sizeOneBlock } = Canvas;
-    const positionsXY = getCoordinates(e, sizeOneBlock);
+    const sizeBlock = Canvas.sizeOneBlock;
+    const positionsXY = getCoordinates(e, sizeBlock);
 
     const ctx = Canvas.canvas.getContext('2d');
     const oldColor = ctx.getImageData(...positionsXY, 1, 1).data.toString();
@@ -22,22 +22,29 @@ export const PaintBucket = {
     while (arr.length !== 0) {
       coords = arr.pop();
 
-      if (coords[0] < 0 || coords[1] < 0 || coords[0] >= Canvas.canvas.width || coords[1] >= Canvas.canvas.height) {
+      if (coords[0] < 0 || coords[1] < 0 || coords[0] >= Canvas.canvas.width
+        || coords[1] >= Canvas.canvas.height) {
         // eslint-disable-next-line no-continue
         continue;
       }
 
-      ctx.fillRect(coords[0], coords[1], sizeOneBlock, sizeOneBlock);
+      ctx.fillRect(coords[0], coords[1], sizeBlock, sizeBlock);
 
-      if (ctx.getImageData(coords[0] + sizeOneBlock, coords[1], 1, 1).data.toString() === oldColor) {
-        arr.push([coords[0] + sizeOneBlock, coords[1]]);
+      if (ctx.getImageData(coords[0] + sizeBlock, coords[1], 1, 1).data.toString() === oldColor) {
+        arr.push([coords[0] + sizeBlock, coords[1]]);
       }
 
-      if (ctx.getImageData(coords[0], coords[1] + sizeOneBlock, 1, 1).data.toString() === oldColor) arr.push([coords[0], coords[1] + sizeOneBlock]);
+      if (ctx.getImageData(coords[0], coords[1] + sizeBlock, 1, 1).data.toString() === oldColor) {
+        arr.push([coords[0], coords[1] + sizeBlock]);
+      }
 
-      if (ctx.getImageData(coords[0] - sizeOneBlock, coords[1], 1, 1).data.toString() === oldColor) arr.push([coords[0] - sizeOneBlock, coords[1]]);
+      if (ctx.getImageData(coords[0] - sizeBlock, coords[1], 1, 1).data.toString() === oldColor) {
+        arr.push([coords[0] - sizeBlock, coords[1]]);
+      }
 
-      if (ctx.getImageData(coords[0], coords[1] - sizeOneBlock, 1, 1).data.toString() === oldColor) arr.push([coords[0], coords[1] - sizeOneBlock]);
+      if (ctx.getImageData(coords[0], coords[1] - sizeBlock, 1, 1).data.toString() === oldColor) {
+        arr.push([coords[0], coords[1] - sizeBlock]);
+      }
     }
   },
 };

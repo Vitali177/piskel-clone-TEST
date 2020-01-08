@@ -23,15 +23,15 @@ export function brezenhamAlgorithm(e, tool) {
   if (Canvas.lastX && Canvas.lastY && (Math.abs(Canvas.positionX - Canvas.lastX) > 1 * sizeBlock || Math.abs(Canvas.positionY - Canvas.lastY) > 1 * sizeBlock)) {
     const drawLine = (x1, y1, x2, y2) => {
       // Iterators, counters required by algorithm
-      let x; let y; let dx; let dy; let dx1; let dy1; let px; let py; let xe; let ye; let i;
+      let x; let y; let px; let py; let xe; let ye; let i;
 
       // Calculate line deltas
-      dx = x2 - x1;
-      dy = y2 - y1;
+      const dx = x2 - x1;
+      const dy = y2 - y1;
 
       // Create a positive copy of deltas (makes iterating easier)
-      dx1 = Math.abs(dx);
-      dy1 = Math.abs(dy);
+      const dx1 = Math.abs(dx);
+      const dy1 = Math.abs(dy);
 
       // Calculate error intervals for both axis
       px = 2 * dy1 - dx1;

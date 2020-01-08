@@ -10,8 +10,8 @@ import { brezenhamAlgorithm } from '../utils/brezenham-algorithm';
 
 export const Canvas = {
   canvas: document.querySelector('#canvas'),
-  canvasNumberBlocks: 32, // localStorage
-  sizeOneBlock: document.querySelector('#canvas').width / 32, // FIX
+  canvasNumberBlocks: null, // localStorage
+  sizeOneBlock: null, // FIX
   isDrawing: false,
   lastX: null,
   lastY: null,
@@ -35,7 +35,6 @@ export const Canvas = {
       this.lastX = null;
       this.lastY = null;
 
-      localStorage.setItem('canvas', Canvas.canvas.toDataURL());
       drawCanvasInSelectedFrame();
     });
 
@@ -73,17 +72,21 @@ export const Canvas = {
         this.canvasNumberBlocks = this.canvas.width;
         this.sizeOneBlock = this.canvas.width / this.canvasNumberBlocks;
 
-        const ctx = this.canvas.getContext('2d');
-        ctx.imageSmoothingEnabled = false;
-        const dataURL = localStorage.getItem('canvas');
-        const img = new Image();
+        if (localStorage.getItem('canvas')) {
+          const ctx = this.canvas.getContext('2d');
+          ctx.imageSmoothingEnabled = false;
+          const dataURL = localStorage.getItem('canvas');
+          const img = new Image();
 
-        img.style.imageRendering = 'pixelated';
+          img.style.imageRendering = 'pixelated';
 
-        img.src = dataURL;
-        img.onload = () => {
-          ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
-        };
+          img.src = dataURL;
+          img.onload = () => {
+            ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
+            saveToLocalStorage();
+            drawCanvasInSelectedFrame();
+          };
+        }
       });
     });
   },

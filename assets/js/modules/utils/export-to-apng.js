@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { Preview } from '../components/Preview';
+
 const UPNG = require('upng-js');
 const download = require('downloadjs');
 

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/prefer-default-export */
 import { Canvas } from '../components/Canvas';
+import { Tools } from '../components/Tools';
 import { drawCanvasInSelectedFrame } from './draw-canvas-in-frame';
 
 export function initLocalStorage() {
@@ -16,6 +17,7 @@ export function initLocalStorage() {
 
     drawCanvasInSelectedFrame();
   }
+
   if (localStorage.getItem('canvasWidth')) {
     const canvasWidth = localStorage.getItem('canvasWidth');
 
@@ -24,16 +26,35 @@ export function initLocalStorage() {
 
     Canvas.canvasNumberBlocks = canvasWidth;
     Canvas.sizeOneBlock = Canvas.canvas.width / Canvas.canvasNumberBlocks;
-
-    const buttonsChangeSize = document.querySelectorAll('.canvas-size button');
-
-    buttonsChangeSize.forEach((button) => {
-      button.classList.remove('selected');
-    });
-
-    const buttonClass = `size-${canvasWidth}`;
-    document.querySelector(`.${buttonClass}`).classList.add('selected');
   } else {
-    // ! Прописать дефолтные размеры
+    const defaultCanvasSize = 32;
+
+    Canvas.canvas.width = defaultCanvasSize;
+    Canvas.canvas.height = defaultCanvasSize;
+
+    Canvas.canvasNumberBlocks = defaultCanvasSize;
+    Canvas.sizeOneBlock = Canvas.canvas.width / Canvas.canvasNumberBlocks;
   }
+
+  const buttonsChangeSize = document.querySelectorAll('.canvas-size button');
+  buttonsChangeSize.forEach((button) => {
+    button.classList.remove('selected');
+  });
+
+  const buttonClass = `size-${Canvas.canvas.width}`;
+  document.querySelector(`.${buttonClass}`).classList.add('selected');
+
+  if (localStorage.getItem('currentTool')) {
+    Tools.currentTool = localStorage.getItem('currentTool');
+  } else {
+    Tools.currentTool = 'pen';
+  }
+  document.querySelector(`.navbar-tools li.${Tools.currentTool}`).classList.add('selected');
+
+  if (localStorage.getItem('penSize')) {
+    Tools.penSize = localStorage.getItem('penSize');
+  } else {
+    Tools.penSize = 1;
+  }
+  document.querySelector(`.pen-size-${Tools.penSize}`).classList.add('selected');
 }
