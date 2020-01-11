@@ -52,6 +52,12 @@ body {
     background-size: contain;
     border: 5px solid grey;
     box-shadow: 13px 14px 7px #111;
+    transition: 0.3s transform ease-out;
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: #e4f158;
+    }
   }
 }
 
@@ -75,6 +81,12 @@ body {
       width: 300px;
       border: 5px solid grey;
       box-shadow: 13px 14px 7px #111;
+      transition: 0.3s transform ease-out;
+
+      &:hover {
+        transform: scale(1.2);
+        border-color: #e4f158;
+      }
     }
   }
 
@@ -104,6 +116,13 @@ body {
     border: 5px solid grey;
     box-shadow: 13px 14px 7px #111;
     background-size: contain;
+
+    transition: 0.3s transform ease-out;
+
+    &:hover {
+      transform: scale(1.2);
+      border-color: #e4f158;
+    }
   }
 
   &__row-1, &__row-2 {

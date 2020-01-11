@@ -37,7 +37,11 @@ body {
     background: url("./../../data/images/landing-1.png") no-repeat;
     background-size: contain;
     border: 5px solid grey;
-    box-shadow: 13px 14px 7px #111; }
+    box-shadow: 13px 14px 7px #111;
+    transition: 0.3s transform ease-out; }
+    .main__screenshot:hover {
+      transform: scale(1.1);
+      border-color: #e4f158; }
 
 .header-examples {
   height: 75px;
@@ -55,7 +59,11 @@ body {
       height: 100%;
       width: 300px;
       border: 5px solid grey;
-      box-shadow: 13px 14px 7px #111; }
+      box-shadow: 13px 14px 7px #111;
+      transition: 0.3s transform ease-out; }
+      .example-sprites__sprites .sprite:hover {
+        transform: scale(1.2);
+        border-color: #e4f158; }
   .example-sprites__sprite-1 {
     background: url("./../../data/images/first.gif") no-repeat no-repeat; }
   .example-sprites__sprite-2 {
@@ -72,7 +80,11 @@ body {
     width: 250px;
     border: 5px solid grey;
     box-shadow: 13px 14px 7px #111;
-    background-size: contain; }
+    background-size: contain;
+    transition: 0.3s transform ease-out; }
+    .implemented-functional .feature:hover {
+      transform: scale(1.2);
+      border-color: #e4f158; }
   .implemented-functional__row-1, .implemented-functional__row-2 {
     display: flex;
     justify-content: space-evenly; }

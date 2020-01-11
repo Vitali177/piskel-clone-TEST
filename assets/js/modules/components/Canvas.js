@@ -21,7 +21,6 @@ export const Canvas = {
   addEventListeners() {
     document.body.addEventListener('click', () => {
       saveToLocalStorage();
-      drawCanvasInSelectedFrame();
     });
 
     this.canvas.addEventListener('mousemove', (e) => {
@@ -35,6 +34,7 @@ export const Canvas = {
       this.lastX = null;
       this.lastY = null;
 
+      saveToLocalStorage();
       drawCanvasInSelectedFrame();
     });
 
