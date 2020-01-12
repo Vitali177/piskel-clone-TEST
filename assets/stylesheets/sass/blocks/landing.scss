@@ -28,7 +28,7 @@ body {
       height: 50px;
       width: 300px;
       margin: 50px 0 0 50px;
-      margin-left: calc((100% - 300px - 50px) / 2);
+      margin-left: calc((100% - 300px) / 2);
       background: #e4f158;
       color: rgb(10, 9, 9);
       font-size: 25px;
@@ -40,16 +40,12 @@ body {
       cursor: pointer;
 
       transition: background 0.3s ease-in-out;
-      animation: button-translate 1s infinite;
+      transition: transform 0.3s ease-out;
 
       &:hover {
         background: rgba(156, 242, 234, 0.98);
+        transform: scale(1.2);
         box-shadow: none;
-      }
-
-      @keyframes button-translate {
-        50% {transform: translateX(50px)}        
-        100% {transform: translateX(0px)}
       }
     }
   }
